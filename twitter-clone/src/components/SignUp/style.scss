@@ -1,0 +1,33 @@
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  
+  form {
+    border: 2px solid #777;
+    border-radius: 6px;
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    input {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 5px;
+    }
+
+    button {
+      align-self: flex-end;
+      margin-top: 10px;
+      padding: 5px;
+    }
+  }
+
+  span {
+    margin-top: 10px;
+  }
+}

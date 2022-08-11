@@ -1,5 +1,36 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import './style.scss';
 
-export default function LogIn() {
-  return <h1>Sign Up</h1>;
+export default function SignUp() {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      username: '',
+      fullname: '',
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  return (
+    <div className="signup">
+      <form onSubmit={formik.handleSubmit}>
+        <h1>Sign up</h1>
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="text" name="username" placeholder="Username" />
+        <input type="text" name="fullname" placeholder="Full name" />
+        <button type="submit">Log in</button>
+      </form>
+      <span>
+        Already have an account?
+        {' '}
+        <Link to="/login">Log in</Link>
+      </span>
+    </div>
+  );
 }
