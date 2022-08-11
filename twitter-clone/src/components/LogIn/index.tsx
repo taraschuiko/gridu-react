@@ -18,8 +18,8 @@ export default function LogIn() {
     <div className="login">
       <form onSubmit={formik.handleSubmit}>
         <h1>Log in</h1>
-        <input type="username" name="username" placeholder="Username" />
-        <input type="password" name="password" placeholder="Password" />
+        <input type="username" name="username" placeholder="Username" onChange={formik.handleChange} value={formik.values.username} />
+        <input type="password" name="password" placeholder="Password" onChange={formik.handleChange} value={formik.values.password} />
         <button type="submit">Log in</button>
       </form>
       <span>
