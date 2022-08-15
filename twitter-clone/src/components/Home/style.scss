@@ -1,0 +1,30 @@
+.home {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #c3c3c3;
+    padding: 20px 60px;
+
+    .title {
+      display: flex;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-left: 10px;
+      }
+    }
+
+    .auth > a {
+      margin-left: 10px;
+    }
+  }
+}
