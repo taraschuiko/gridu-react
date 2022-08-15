@@ -11,6 +11,8 @@ type ContextValue = {
   user: User | null,
   // eslint-disable-next-line no-unused-vars
   login: (username: String) => void
+  // eslint-disable-next-line no-unused-vars
+  signup: (username: String, email: String) => void
 }
 
 const Context = createContext<ContextValue | null>(null);
@@ -18,13 +20,13 @@ const Context = createContext<ContextValue | null>(null);
 function Provider({ children } : { children: React.ReactNode}) {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = (username: String) => {
-    axios.get(`http://localhost:3001/users/${username}`).then((r) => setUser(r.data));
-  };
+  const login = (username: String) => axios.get(`http://localhost:3001/users/${username}`).then((r) => setUser(r.data));
+
+  const signup = (username: String, email: String) => axios.post('http://localhost:3001/users/', { name: username, email }).then((r) => setUser(r.data));
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <Context.Provider value={{ user, login }}>
+    <Context.Provider value={{ user, login, signup }}>
       {children}
     </Context.Provider>
   );

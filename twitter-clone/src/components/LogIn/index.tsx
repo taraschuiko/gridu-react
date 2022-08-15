@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Authentication from '../../contexts/Authentication';
@@ -8,6 +8,12 @@ export default function LogIn() {
   const authContext = useContext(Authentication.Context);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authContext?.user) {
+      navigate('/', { replace: true });
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {

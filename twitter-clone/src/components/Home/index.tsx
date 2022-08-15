@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Authentication from '../../contexts/Authentication';
 
 export default function LogIn() {
-  return <h1>Home Page</h1>;
+  const authContext = useContext(Authentication.Context);
+
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <span>{authContext?.user?.name}</span>
+    </div>
+  );
 }
