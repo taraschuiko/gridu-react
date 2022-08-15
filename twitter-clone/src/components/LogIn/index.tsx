@@ -1,16 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import Authentication from '../../contexts/Authentication';
 import './style.scss';
 
 export default function LogIn() {
+  const authContext = useContext(Authentication.Context);
+
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      if (authContext) {
+        authContext.login(values.username);
+        navigate('/', { replace: true });
+      }
     },
   });
 
