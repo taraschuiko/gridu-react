@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +7,7 @@ import './style.scss';
 
 export default function LogIn() {
   const authContext = useContext(Authentication.Context);
+  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -27,8 +28,13 @@ export default function LogIn() {
     }),
     onSubmit: (values) => {
       if (authContext) {
-        authContext.login(values.username);
-        navigate('/', { replace: true });
+        authContext.login(values.username).then((errorMessage) => {
+          if (errorMessage) {
+            setError(errorMessage);
+          } else {
+            navigate('/', { replace: true });
+          }
+        });
       }
     },
   });
@@ -41,6 +47,7 @@ export default function LogIn() {
         <span>{formik.errors.username}</span>
         <input type="password" name="password" placeholder="Password" onChange={formik.handleChange} value={formik.values.password} className={formik.errors.password && 'invalid-field'} />
         <span>{formik.errors.password}</span>
+        {error && (<span>{error}</span>)}
         <button type="submit">Log in</button>
       </form>
       <span>

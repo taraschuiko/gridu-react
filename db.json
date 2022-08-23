@@ -14,26 +14,6 @@
       "id": "3",
       "author_id": "ameliawarner",
       "text": "Describe your relationship with JavaScript with one word."
-    },
-    {
-      "id": "4",
-      "author_id": "carlanotarobot",
-      "text": "1"
-    },
-    {
-      "id": "5",
-      "author_id": "carlanotarobot",
-      "text": "afsdfsdfdsfafsdfsdfdsfafsdfsdf"
-    },
-    {
-      "id": "6",
-      "author_id": "carlanotarobot",
-      "text": ""
-    },
-    {
-      "id": "7",
-      "author_id": "carlanotarobot",
-      "text": "fdsf"
     }
   ],
   "users": [
@@ -66,6 +46,11 @@
       "name": "carlanotarobot",
       "email": "tchuiko@griddynamics.com",
       "id": "kSGMRO6"
+    },
+    {
+      "name": "taraschuiko",
+      "email": "tchuiko@griddynamics.com",
+      "id": "tnkNVES"
     }
   ]
 }

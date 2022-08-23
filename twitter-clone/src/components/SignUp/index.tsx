@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +7,7 @@ import './style.scss';
 
 export default function SignUp() {
   const authContext = useContext(Authentication.Context);
+  const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -31,8 +32,13 @@ export default function SignUp() {
     }),
     onSubmit: (values) => {
       if (authContext) {
-        authContext.signup(values.username, values.email);
-        navigate('/', { replace: true });
+        authContext.signup(values.username, values.email).then((errorMessage) => {
+          if (errorMessage) {
+            setError(errorMessage);
+          } else {
+            navigate('/', { replace: true });
+          }
+        });
       }
     },
   });
@@ -49,6 +55,7 @@ export default function SignUp() {
         {formik.errors.username}
         <input type="text" name="fullname" placeholder="Full name" onChange={formik.handleChange} value={formik.values.fullname} className={formik.errors.fullname && 'invalid-field'} />
         {formik.errors.fullname}
+        {error && (<span>{error}</span>)}
         <button type="submit">Sign up</button>
       </form>
       <span>
