@@ -71,23 +71,5 @@
         cursor: pointer;
       }
     }
-
-    .tweet {
-      border: 2px solid #c3c3c3;
-      border-radius: 6px;
-      margin-bottom: 20px;
-      display: flex;
-      padding: 10px;
-      gap: 10px;
-
-      &__author {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-
-      .tweet__content {
-        flex: 1;
-      }
-    }
   }
 }

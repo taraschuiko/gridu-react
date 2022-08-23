@@ -15,10 +15,22 @@ export type TweetObject = {
 export default function LogIn() {
   const authContext = useContext(Authentication.Context);
   const [tweets, setTweets] = useState<TweetObject[]>([]);
+  const [newTweet, setNewTweet] = useState('');
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/tweets').then((r) => setTweets(r.data));
-  }, []);
+  const getTweets = () => { axios.get('http://localhost:3001/tweets').then((r) => setTweets(r.data)); };
+
+  useEffect(getTweets, []);
+
+  const createNewTweet = () => {
+    axios.post('http://localhost:3001/tweets', {
+      id: `${+tweets[tweets.length - 1].id + 1}`,
+      author_id: authContext?.user?.id,
+      text: newTweet,
+    }).then(() => {
+      setNewTweet('');
+      getTweets();
+    });
+  };
 
   return (
     <div className="home">
@@ -42,10 +54,12 @@ export default function LogIn() {
         )}
       </header>
       <main>
-        <div className="create-tweet">
-          <textarea name="tweet" />
-          <button type="button">Tweet</button>
-        </div>
+        {authContext?.user && (
+          <div className="create-tweet">
+            <textarea name="tweet" value={newTweet} onChange={(e) => setNewTweet(e.target.value)} />
+            <button type="button" onClick={createNewTweet}>Tweet</button>
+          </div>
+        )}
         {tweets.map((tweet) => (
           <Tweet key={tweet.id} tweet={tweet} />
         ))}

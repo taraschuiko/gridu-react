@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { TweetObject } from '../Home';
+import './style.scss';
 
 export default function Tweet({ tweet }: {tweet: TweetObject}) {
   const [userName, setUserName] = useState<string>();
