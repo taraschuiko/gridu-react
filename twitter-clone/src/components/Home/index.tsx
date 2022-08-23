@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Authentication from '../../contexts/Authentication';
 import './style.scss';
-import twitterIcon from '../../assets/twitter.svg';
 import Tweet from '../Tweet';
+import Header from '../Header';
 
 export type TweetObject = {
   id: string,
@@ -34,25 +33,7 @@ export default function LogIn() {
 
   return (
     <div className="home">
-      <header>
-        <div className="title">
-          <img src={twitterIcon} alt="Twitter icon" />
-          <h1>Another Twitter Clone</h1>
-        </div>
-        {authContext?.user ? (
-          <div className="user">
-            <span>{authContext.user.name}</span>
-            <div className="initials">
-              {authContext.user.name.match(/\b(\w)/g)!.join('')}
-            </div>
-          </div>
-        ) : (
-          <div className="auth">
-            <Link to="/login">Log in</Link>
-            <Link to="/signup">Sign up</Link>
-          </div>
-        )}
-      </header>
+      <Header />
       <main>
         {authContext?.user && (
           <div className="create-tweet">

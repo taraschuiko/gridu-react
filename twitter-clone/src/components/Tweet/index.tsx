@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { TweetObject } from '../Home';
+import UserIcon from '../UserIcon';
 import './style.scss';
 
 export default function Tweet({ tweet }: {tweet: TweetObject}) {
@@ -12,9 +13,7 @@ export default function Tweet({ tweet }: {tweet: TweetObject}) {
 
   return (
     <div className="tweet">
-      <div className="initials">
-        {userName ? userName.match(/\b(\w)/g)!.join('') : ''}
-      </div>
+      {userName && <UserIcon userName={userName} />}
       <div className="tweet__content">
         <p className="tweet__author">{userName}</p>
         <p dangerouslySetInnerHTML={{ __html: tweet.text }} />

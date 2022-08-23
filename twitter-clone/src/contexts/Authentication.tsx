@@ -2,9 +2,9 @@ import React, { createContext, useState } from 'react';
 import axios from 'axios';
 
 type User = {
-  'id': String,
-  'name': String,
-  'email': String
+  'id': string,
+  'name': string,
+  'email': string
 }
 
 type ContextValue = {
