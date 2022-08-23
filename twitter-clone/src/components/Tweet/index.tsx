@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import sanitizeHtml from 'sanitize-html';
 import { TweetObject } from '../Home';
 import UserIcon from '../UserIcon';
 import './style.scss';
@@ -16,7 +17,7 @@ export default function Tweet({ tweet }: {tweet: TweetObject}) {
       {userName && <UserIcon userName={userName} />}
       <div className="tweet__content">
         <p className="tweet__author">{userName}</p>
-        <p dangerouslySetInnerHTML={{ __html: tweet.text }} />
+        <p dangerouslySetInnerHTML={{ __html: sanitizeHtml(tweet.text) }} />
       </div>
     </div>
   );
